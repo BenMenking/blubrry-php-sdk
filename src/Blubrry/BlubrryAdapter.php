@@ -210,7 +210,7 @@ class BlubrryAdapter implements FilesystemAdapter {
             'base_url'=>'https://feeds.blubrry.com/'
         ]);
 
-        $response = $client->get('feeds/' . $this->program . '.xml');
+        $response = $httpclient->get('feeds/' . $this->program . '.xml');
 
         $info = simplexml_load_string((string)$response->getBody());
 
@@ -236,7 +236,7 @@ class BlubrryAdapter implements FilesystemAdapter {
             'base_uri'=>'https://api.blubrry.com/'
         ]);
 
-        $response = $client->post('oauth2/authorize', [
+        $response = $httpclient->post('oauth2/authorize', [
             'auth'=>[
                 $client_id,
                 $client_secret
