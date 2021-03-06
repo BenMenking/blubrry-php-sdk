@@ -8,7 +8,7 @@
     "license": "ISC",
     "autoload": {
         "psr-4": {
-            "Blubrry\\": "src/"
+            "Blubrry\\": "src/Blubrry/"
         }
     },
     "require-dev": {
