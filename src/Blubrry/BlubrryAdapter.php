@@ -14,12 +14,14 @@ class BlubrryAdapter implements FilesystemAdapter {
     private $connector = null;
     private $auth = [];
 
-    public function __construct(string $program) {
+    public function __construct(string $program = '') {
         $this->program = $program;
         $this->connector = new API();
     }
 
     public function getPrograms(): array {
+        if( !$this->preflightCheck() ) throw new Exception('Client not authorized');
+        
         return $this->connector->mediaHosting()->listPrograms();
     }
 
@@ -217,7 +219,13 @@ class BlubrryAdapter implements FilesystemAdapter {
         }
     }
 
+    private function preflightCheck() {
+        return is_null($this->connector);
+    }
+
     public function authorizeClientCredentials($client_user, $client_password, $client_id, $client_secret) {
+        $this->connector = new API();
+
         $params = [
             'grant_type'=>'password',
             'username'=>$client_user,
