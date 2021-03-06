@@ -245,6 +245,8 @@ class BlubrryAdapter implements FilesystemAdapter {
         ]);
 
         $info = json_decode((string)$response->getBody(), true);
+
+        print_r($info);
        
         $this->auth = $this->connector->auth($client_id, $client_secret)->getNewAccessToken($info['refresh_token']);
 
