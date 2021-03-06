@@ -20,8 +20,8 @@ class BlubrryAdapter implements FilesystemAdapter {
     }
 
     public function getPrograms(): array {
-        if( !$this->preflightCheck() ) throw new Exception('Client not authorized');
-        
+        if( !$this->preflightCheck() ) throw new \Exception('Client not authorized');
+
         return $this->connector->mediaHosting()->listPrograms();
     }
 
